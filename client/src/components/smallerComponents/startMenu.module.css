@@ -1,0 +1,25 @@
+
+
+.startMenuIcon {
+  background: url('...') no-repeat center;
+  background-size: contain; /* scales the image to fit the box */
+  height: 24px;
+  width: 24px;
+}
+
+.startMenu {
+  position: absolute;
+  list-style-type: none;
+  top: 10000;
+}
+
+
+/* .startMenuIcon:hover + .startMenu {
+
+
+  .startMenu {
+
+  }
+
+
+} */

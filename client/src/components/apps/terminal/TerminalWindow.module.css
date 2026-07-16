@@ -1,0 +1,45 @@
+
+
+.TerminalWindow {
+    width: 800px;
+    height: 400px;
+    background-color: black;
+    color: greenyellow;
+    font-size: 12px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.TerminalMainView {
+    flex: 1;
+    padding: 10px;
+    line-height: 1.6;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.TerminalFooterWrapper {
+    display: flex;
+    height: 30px;
+    align-items: center;
+    border-top: 1px solid #ccc;
+}
+
+.TerminalFooterWrapper::before {
+  content: 'C://Terminal';
+  font-size: 12px;
+  padding-left: 0.4em;
+  user-select: none;
+  pointer-events: none;
+  
+}
+
+.TerminalFooter {
+    flex: 1;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    color: greenyellow;
+    padding: 0 10px;
+}
