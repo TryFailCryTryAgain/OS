@@ -7,7 +7,12 @@
 }
 
 body {
-    background-image: url("./assets/background-image/pixels-baby-cream-color-cute-ultrawide-wallpapers-2025-best-ultra-hd-high-resolution-4k-desktop-backgrounds-wallpapers-for-mac-linux-and-windows-pc-macos-11-03-2025-1741731914-hd-wallpaper.png");
+    background-image: url("./assets/background-image/Background_Image_001.png");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center top;
+    background-size: 110%;
+    overflow: hidden;
 }
 
 #root {

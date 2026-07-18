@@ -5,6 +5,12 @@
   background-size: contain; /* scales the image to fit the box */
   height: 24px;
   width: 24px;
+  cursor: pointer;
+  transition: all .1s ease;
+}
+
+.startMenuIcon:hover {
+  filter: invert(16%) sepia(100%) saturate(621%) hue-rotate(247deg) brightness(198%) contrast(21%);
 }
 
 .startMenu {

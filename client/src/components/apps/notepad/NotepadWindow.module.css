@@ -1,0 +1,25 @@
+
+
+.NotepadDisplay {
+    background-color: rgb(85, 98, 126);
+    min-height: 230px;
+    min-width: 400px;
+    height: 100%;
+    width: 100%;
+
+    overflow-y: auto;
+}
+
+.NotepadHeader {
+    height: 75px;
+    width: 100%;
+}
+
+.NotepadMain {
+    min-height: 100%;
+    width: 80%;
+    background-color: white;
+    color: black;
+    justify-self: center;
+    padding: 10px;
+}

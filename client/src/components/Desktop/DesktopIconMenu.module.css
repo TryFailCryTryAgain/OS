@@ -8,6 +8,9 @@
     color: black;
     border-radius: 14px;
     padding: 6px 0;
+    z-index: 100;
+
+    overflow: hidden;
 
     li {
         padding: 12px;

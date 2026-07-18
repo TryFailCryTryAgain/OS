@@ -1,4 +1,4 @@
-import './footer.module.css';
+import styles from './footer.module.css';
 import StartMenu from './smallerComponents/startMenu';
 
 
@@ -6,7 +6,7 @@ function Footer() {
 
 
     return (
-        <footer>
+        <footer className={styles.FooterStyling}>
 
             <StartMenu />
 

@@ -5,14 +5,34 @@ main {
 }
 
 .windowOverlay {
+  /* position: absolute;
+  top: 50px;
+  left: 100px; */
   position: absolute;
-  top: 100px;
-  left: 200px;
   z-index: 100;
   background-color: #1e1e2e;
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-  min-width: 300px;
+
+  /* make it an actual resizable box */
+  display: flex;
+  flex-direction: column;
+  min-width: 400px;
+  min-height: 230px;      /* title bar + terminal min sizes */
+  overflow: hidden;    /* required for resize to actually show/work */
+  resize: both;
+  z-index: 1000;
+}
+
+.windowMaximized {
+  position: fixed;
+  inset: 0;
+  transform: none;
+  flex: 1;
+  z-index: 1000;
+  height: 100dvh;
+  width: 100dvw;
+  resize: none;
 }
 
 .windowTitleBar {
@@ -24,9 +44,15 @@ main {
   color: white;
   border-radius: 8px 8px 0 0;
   cursor: default;
+  flex-shrink: 0;      /* never let the title bar get squeezed */
 }
 
-.windowTitleBar button {
+.windowTitleBarButtonContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.windowTitleBarButtonContainer button {
   background: none;
   border: none;
   color: white;

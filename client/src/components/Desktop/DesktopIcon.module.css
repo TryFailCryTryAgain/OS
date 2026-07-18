@@ -5,7 +5,7 @@
   width: 80px;
   cursor: grab;
   user-select: none;
-  color: rgb(116, 71, 4);
+  color: #E1E1E1;
   text-align: center;
   font-size: 12px;
 }
@@ -17,7 +17,7 @@
 .iconImage {
   width: 48px;
   height: 48px;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: #E1E1E1;
   border-radius: 8px;
   margin-bottom: 4px;
 }
