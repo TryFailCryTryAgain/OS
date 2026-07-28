@@ -1,0 +1,28 @@
+
+
+.FileManagerWindow {
+    background-color: rgb(224, 140, 38);
+    height: 100%;
+    width: 100%;
+    min-height: 230px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.FileManagerHeader {
+    height: 30px;
+    width: auto;
+    margin: 10px;
+    border-radius: 7px;
+    background-color: #E1E1E1;
+}
+
+.FileManagerMain {
+    flex: 1;
+    width: auto;
+    margin: 10px;
+    border-radius: 7px;
+    background-color: #E1E1E1;
+}

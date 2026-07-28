@@ -1,8 +1,9 @@
 import DesktopIcon from './Desktop/DesktopIcon';
 import { initialIcons } from './data/icons';
 import { APP_REGISTRY } from './apps/appRegistry';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import styles from './mainContainer.module.css';
+import { APP_EVENTS, type OpenAppDetail } from './data/events';
 
 interface OpenWindow {
   windowId: string;
@@ -25,6 +26,7 @@ function MainContainer() {
   const windowOffsetRef = useRef({ x: 0, y: 0});
   const windowDraggingRef = useRef(false);
 
+
   const handleWindowDrag = (windowId: string, x: number, y: number) => {
     setOpenWindows((prev) =>
       prev.map((window) => (window.windowId === windowId ? { ...window, x, y} : window))
@@ -37,12 +39,22 @@ function MainContainer() {
     );
   };
 
-  const handleOpenApp = (appId: string) => {
+  const handleOpenApp = useCallback((appId: string) => {
     setOpenWindows((prev) => {
       if (prev.some((w) => w.appId === appId)) return prev;
       return [...prev, { windowId: crypto.randomUUID(), appId, x: 200, y: 100 }];
     });
-  };
+  }, []);
+
+  useEffect(() => {
+    const listener = (e: Event) => {
+      const { appId } = (e as CustomEvent<OpenAppDetail>).detail;
+      handleOpenApp(appId);
+    };
+
+    window.addEventListener(APP_EVENTS.OPEN_APP, listener);
+    return () => window.removeEventListener(APP_EVENTS.OPEN_APP, listener);
+  }, [handleOpenApp]);
 
   const handleCloseWindow = (windowId: string) => {
     setOpenWindows((prev) => prev.filter((w) => w.windowId !== windowId));
