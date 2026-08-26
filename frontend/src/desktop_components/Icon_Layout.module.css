@@ -1,0 +1,36 @@
+
+
+.icon_layout {
+    flex: 1;
+}
+
+
+.icon {
+
+    color: var(--text--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 36px;
+    width: 36px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+    user-select: none;
+
+
+}
+
+.icon_size {
+    height: 24px;
+    max-width: 36px;
+}
+
+.deafult_icon_img {
+    background-color: var(--text--primary);
+    border-radius: 14px;
+    height: 100%;
+    width: 100%;
+}
