@@ -3,13 +3,15 @@ import { initialIcons } from './data/icons';
 import { APP_REGISTRY } from './apps/appRegistry';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import styles from './mainContainer.module.css';
-import { APP_EVENTS, type OpenAppDetail } from './data/events';
+import { APP_EVENTS, type CloseAppDetail, type FocusAppDetail, type OpenAppDetail } from './data/events';
+import Footer from './footer';
 
 interface OpenWindow {
   windowId: string;
   appId: string;
   x: number;
   y: number;
+  zIndex: number;
 }
 
 function MainContainer() {
@@ -39,10 +41,13 @@ function MainContainer() {
     );
   };
 
+  const zIndexCounter = useRef(10);
+
   const handleOpenApp = useCallback((appId: string) => {
     setOpenWindows((prev) => {
       if (prev.some((w) => w.appId === appId)) return prev;
-      return [...prev, { windowId: crypto.randomUUID(), appId, x: 200, y: 100 }];
+      zIndexCounter.current += 1;
+      return [...prev, { windowId: crypto.randomUUID(), appId, x: 200, y: 100, zIndex: zIndexCounter.current }];
     });
   }, []);
 
@@ -56,11 +61,42 @@ function MainContainer() {
     return () => window.removeEventListener(APP_EVENTS.OPEN_APP, listener);
   }, [handleOpenApp]);
 
-  const handleCloseWindow = (windowId: string) => {
+  const bringToFront = useCallback((windowId: string) => {
+    zIndexCounter.current += 1;
+    const nextZ = zIndexCounter.current;
+    setOpenWindows((prev) =>
+      prev.map((w) => (w.windowId === windowId ? { ...w, zIndex: nextZ } : w))
+    );
+  }, []);
+
+  const activeWindowId = openWindows.length > 0 ? openWindows.reduce((a, b) => (a.zIndex > b.zIndex ? a : b)).windowId : null;
+
+  useEffect(() => {
+    const listener = (e: Event) => {
+      const { windowId } = (e as CustomEvent<FocusAppDetail>).detail;
+      bringToFront(windowId);
+    };
+    window.addEventListener(APP_EVENTS.FOUCS_APP, listener);
+    return () => window.removeEventListener(APP_EVENTS.FOUCS_APP, listener);
+  }, [bringToFront]);
+
+  const handleCloseWindow = useCallback((windowId: string) => {
     setOpenWindows((prev) => prev.filter((w) => w.windowId !== windowId));
     windowRefs.current.delete(windowId);
     savedSizes.current.delete(windowId);
-  };
+  }, []);
+
+  useEffect(() => {
+    const listener = (e: Event) => {
+      const { windowId } = (e as CustomEvent<CloseAppDetail>).detail;
+      handleCloseWindow(windowId);
+    };
+
+    window.addEventListener(APP_EVENTS.CLOSE_APP, listener);
+    return () => window.removeEventListener(APP_EVENTS.CLOSE_APP, listener);
+  }, [handleCloseWindow]);
+
+
 
   const resizeWindow = (windowId: string) => {
     const el = windowRefs.current.get(windowId);
@@ -134,6 +170,8 @@ function MainContainer() {
   };
 
   return (
+    <>
+
     <main ref={containerRef} className={styles.mainContainer}>
       {icons.map((icon) => (
         <DesktopIcon
@@ -162,11 +200,15 @@ function MainContainer() {
               else windowRefs.current.delete(win.windowId);
             }}
             className={`${styles.windowOverlay} ${isMaximized ? styles.windowMaximized : ''}`}
-            style={isMaximized ? undefined : { left: win.x, top: win.y }}
+              style={{
+                ...(isMaximized ? {} : { left: win.x, top: win.y }),
+                zIndex: win.zIndex,
+              }}
           >
             <div 
               className={styles.windowTitleBar}
               onMouseDown={(e) => handleTitleBarMouseDown(e, win.windowId)}
+              onClick={() => bringToFront(win.windowId)}
             >
               <span>{app.title}</span>
               <span className={styles.windowTitleBarButtonContainer}>
@@ -181,6 +223,14 @@ function MainContainer() {
         );
       })}
     </main>
+
+    <Footer 
+      openWindows={openWindows}
+      activeWindowId={activeWindowId}
+      windowRefs={windowRefs}
+    />
+
+    </>
   );
 }
 

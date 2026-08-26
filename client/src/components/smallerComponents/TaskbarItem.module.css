@@ -1,0 +1,48 @@
+/* TaskbarItem.module.css - new file */
+.taskbarItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.taskbarItem.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 10px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.closeButton:hover {
+  opacity: 1;
+}
+
+.previewPopup {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.previewPopup img {
+  display: block;
+  width: 220px;
+  height: auto;
+}

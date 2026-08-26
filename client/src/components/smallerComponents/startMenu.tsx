@@ -14,8 +14,6 @@ function StartMenu() {
     }
 
     return (
-
-
         <>
             <img 
                 src={menuIcon} 
