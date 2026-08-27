@@ -3,6 +3,7 @@ import style from './Taskbar.module.css';
 import Start_Menu_Icon from '../assets/heroicons-outline_start_menu.svg';
 import { useState } from 'react';
 import { initialIcons } from '../icons/iconRegistry';
+import { dispatchOpenApp } from '../apps/events';
 
 function Taskbar() {
 
@@ -24,6 +25,7 @@ function Taskbar() {
                         {icons.map((icon) => (
                             <div 
                                 className={style.icon}
+                                onClick={() => dispatchOpenApp(icon.appId)}
                             >
                                 {icon.icon ? (
                                     <div className={style.icon_size}>

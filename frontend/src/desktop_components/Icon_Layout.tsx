@@ -1,6 +1,8 @@
 import style from './Icon_Layout.module.css';
 import { initialIcons, type IconData } from '../icons/iconRegistry';
 import { useRef, useState, useEffect } from 'react';
+import { dispatchOpenApp } from '../apps/events';
+import Window_Overlay from './Window_Overlay';
 
 
 
@@ -70,6 +72,7 @@ function Icon_Layout() {
                             top: icon.y
                         }}
                         onMouseDown={(e) => handleMouseDown(e, icon.id)}
+                        onClick={() => dispatchOpenApp(icon.appId)}
                     >
                         {icon.icon ? (
                             <div className={style.icon_size}>
@@ -84,6 +87,9 @@ function Icon_Layout() {
                         <span>{icon.label}</span>
                     </div>
                 ))}
+
+
+                <Window_Overlay />
 
 
 

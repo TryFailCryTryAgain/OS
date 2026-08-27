@@ -2,6 +2,7 @@
 
 .icon_layout {
     flex: 1;
+    overflow: hidden;
 }
 
 
