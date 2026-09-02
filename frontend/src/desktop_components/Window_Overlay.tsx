@@ -215,7 +215,8 @@ function Window_Overlay() {
                 </button>
               </span>
             </header>
-            <AppComponent />
+
+              <AppComponent />
           </div>
         );
       })}

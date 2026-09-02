@@ -1,0 +1,31 @@
+
+VIRTUAL FILE SYSTEM
+
+
+
+mkdir
+cd ..
+cd file_path
+touch
+rm file_path
+
+When application first loads:
+
+1. Generate VFSState
+
+const state: VFSState = {
+    rootId: "crypto.randomUUID()",
+    nodes: {
+        "crypto.randomUUID()": drive,
+    }
+}
+
+let drive: DirectoryNode = {
+    type: 'directory',
+    children: [],
+    id: crypto.randomUUID(),
+    name: "C:/",
+    parentId: null,
+    createdAt: Date.now(),
+    modifiedAt: Date.now(),
+}

@@ -64,7 +64,7 @@ function Icon_Layout() {
             >
 
                 {icons.map((icon) => (
-                    <div 
+                    <div
                         className={style.icon}
                         style={{
                             position: 'absolute',

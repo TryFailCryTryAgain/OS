@@ -1,0 +1,37 @@
+
+.Terminal_Window {
+    background-color: var(--bg--panel);
+
+    flex: 1;
+    min-width: 300px;
+    min-height: 300px;
+
+    display: flex;
+}
+
+.input {
+    border: none;
+    color: var(--text--primary);
+
+    padding: 4px;
+    box-sizing: border-box;
+    flex: 1;
+}
+
+.input_container {
+    height: 30px;
+    inset: 0;
+    margin-top: auto;
+    width: 100%;
+
+    border-top: 1px solid var(--accent--primary);
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    background-color: var(--accent--primary);
+    border: none;
+    cursor: pointer;
+}
+
