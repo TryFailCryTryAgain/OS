@@ -23,4 +23,5 @@ export type VNode = FileNode | DirectoryNode;
 export type VFSState = {
     nodes: Record<string, VNode>;
     rootId: string;
+    cwdId: string;
 }

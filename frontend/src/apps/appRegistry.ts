@@ -1,4 +1,4 @@
-import Terminal from "./Terminal_App/Terminal";
+import Terminal from "./Terminal_App/components/Terminal";
 import Files from "./File_Explorer_App/Files";
 import Notepad from "./Notepad_App/Notepad";
 
